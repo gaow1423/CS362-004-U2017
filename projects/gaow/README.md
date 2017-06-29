@@ -1,1 +1,1 @@
-Wei Gao
+This is my assignment-1 submission!
