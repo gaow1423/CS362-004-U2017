@@ -44,7 +44,8 @@ int main(){
 	}
 	//testing coppers and silvers
 #if (NOISY_TEST == 1)
-	printf ("--------TESTING updateCoins() with coppers and silvers:--------\n");
+	printf ("--------TESTING updateCoins():--------\n");
+	printf ("TESTING updateCoins() with coppers and silvers:\n");
 #endif
 	for (p = 0; p < numPlayer; p++)
 	{
