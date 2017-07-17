@@ -1,0 +1,602 @@
+TESTING updateCoins() with coppers and silvers:
+
+Test player 0 with 5 copper(s), 0 silver(s), and 6 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 4 copper(s), 1 silver(s), and 5 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 3 copper(s), 2 silver(s), and 8 bonus.
+G.coins = 15, expected = 15
+
+Test player 0 with 2 copper(s), 3 silver(s), and 0 bonus.
+G.coins = 8, expected = 8
+
+Test player 0 with 1 copper(s), 4 silver(s), and 5 bonus.
+G.coins = 14, expected = 14
+
+Test player 0 with 0 copper(s), 5 silver(s), and 0 bonus.
+G.coins = 10, expected = 10
+
+Test player 1 with 5 copper(s), 0 silver(s), and 2 bonus.
+G.coins = 7, expected = 7
+
+Test player 1 with 4 copper(s), 1 silver(s), and 6 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 3 copper(s), 2 silver(s), and 1 bonus.
+G.coins = 8, expected = 8
+
+Test player 1 with 2 copper(s), 3 silver(s), and 4 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 1 copper(s), 4 silver(s), and 8 bonus.
+G.coins = 17, expected = 17
+
+Test player 1 with 0 copper(s), 5 silver(s), and 4 bonus.
+G.coins = 14, expected = 14
+
+TESTING updateCoins() with coppers and gold:
+
+Test player 0 with 5 copper(s), 0 gold(s), and 3 bonus.
+G.coins = 8, expected = 8
+
+Test player 0 with 4 copper(s), 1 gold(s), and 9 bonus.
+G.coins = 16, expected = 16
+
+Test player 0 with 3 copper(s), 2 gold(s), and 2 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 2 copper(s), 3 gold(s), and 1 bonus.
+G.coins = 12, expected = 12
+
+Test player 0 with 1 copper(s), 4 gold(s), and 4 bonus.
+G.coins = 17, expected = 17
+
+Test player 0 with 0 copper(s), 5 gold(s), and 5 bonus.
+G.coins = 20, expected = 20
+
+Test player 1 with 5 copper(s), 0 gold(s), and 1 bonus.
+G.coins = 6, expected = 6
+
+Test player 1 with 4 copper(s), 1 gold(s), and 5 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 3 copper(s), 2 gold(s), and 5 bonus.
+G.coins = 14, expected = 14
+
+Test player 1 with 2 copper(s), 3 gold(s), and 2 bonus.
+G.coins = 13, expected = 13
+
+Test player 1 with 1 copper(s), 4 gold(s), and 8 bonus.
+G.coins = 21, expected = 21
+
+Test player 1 with 0 copper(s), 5 gold(s), and 8 bonus.
+G.coins = 23, expected = 23
+All tests passed!
+
+TESTING scoreFor():
+
+Test 1 - Player 0:
+Putting following cards into discard pile:
+    4 duchy
+    5 provinces
+    3 great halls
+    2 gardens
+    1 curses
+deckCount: 5
+discardCount: 15
+handCount: 5
+Player 0 score: 48, expected: 51
+
+Test 2 - Player 1:
+All cards in deck, no additional card changes:
+deckCount: 10
+discardCount: 0
+handCount: 0
+Player 1 score: 0, expected: 3
+
+2 test(s) failed!
+
+TESTING isGameOver():
+If the game ends, isGameOver = 1
+Test#1: The game without any change
+Game is over: 0, expected: 0
+
+Test#2: 0 Provinces
+Game is over: 1, expected: 1
+
+Test#3: 1 Empty pile
+Game is over: 0, expected: 0
+
+Test#4: 2 Empty piles
+Game is over: 0, expected: 0
+
+Test#5: 3 Empty piles
+Game is over: 1, expected: 1
+
+All tests passed!
+
+TESTING fullDeckCount():
+
+Testing for Player 0:
+Adding the following to the
+deck:         6 coppers
+hand:         8 golds
+discard pile: 3 provinces
+deck:         4 smithys
+hand:	      5 Minion
+deck:         4 Cutpurse
+Test results:
+initial copper result: 7, expected: 7
+initial estate result: 3, expected: 3
+updated copper result: 13, expected: 13
+gold result: 8, expected: 8
+provinces result: 3, expected: 3
+smithy result: 4, expected: 4
+minion result: 5, expected: 5
+cutpurse result: 4, expected: 4
+
+Testing for Player 1:
+Adding the following to the
+deck:         6 coppers
+hand:         8 golds
+discard pile: 3 provinces
+deck:         4 smithys
+hand:	      5 Minion
+deck:         4 Cutpurse
+Test results:
+initial copper result: 7, expected: 7
+initial estate result: 3, expected: 3
+updated copper result: 13, expected: 13
+gold result: 8, expected: 8
+provinces result: 3, expected: 3
+smithy result: 4, expected: 4
+minion result: 5, expected: 5
+cutpurse result: 4, expected: 4
+
+All tests passed!!
+Testing Smithy Card: 
+Verifying base state of game: 
+Starting EState cards:   8, expected: 8
+Starting Duchy cards:    8, expected: 8
+Starting Province cards: 8, expected: 8
+Player 0
+Starting coins:        4
+Starting deckCount:    5
+Starting handCount:    5
+Starting discardCount: 0
+
+Player 1
+Starting coins:        4
+Starting deckCount:    10
+Starting handCount:    0
+Starting discardCount: 0
+
+Test#1: +3 cards
+Player 0
+Test_state hand count =    5, Base_state hand count =    5
+Test_state deck count =    2, Base_state deck count =    5
+Test_state discard count = 1, Base_state discard count = 0
+ERROR: Hand counts didn't increase properly
+ERROR: discard counts don't match
+Player 1
+Test_state hand count =    0, Base_state hand count =    0
+Test_state deck count =    10, Base_state deck count =    10
+Test_state discard count = 0, Base_state discard count = 0
+Test#1 failed
+TEST#2: Discard Smithy card
+
+Test#2 passed.
+
+TEST#3: unchanged supply cards
+Test 3 passed.
+All tests complete!!
+TESTING updateCoins() with coppers and silvers:
+
+Test player 0 with 5 copper(s), 0 silver(s), and 6 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 4 copper(s), 1 silver(s), and 5 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 3 copper(s), 2 silver(s), and 8 bonus.
+G.coins = 15, expected = 15
+
+Test player 0 with 2 copper(s), 3 silver(s), and 0 bonus.
+G.coins = 8, expected = 8
+
+Test player 0 with 1 copper(s), 4 silver(s), and 5 bonus.
+G.coins = 14, expected = 14
+
+Test player 0 with 0 copper(s), 5 silver(s), and 0 bonus.
+G.coins = 10, expected = 10
+
+Test player 1 with 5 copper(s), 0 silver(s), and 2 bonus.
+G.coins = 7, expected = 7
+
+Test player 1 with 4 copper(s), 1 silver(s), and 6 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 3 copper(s), 2 silver(s), and 1 bonus.
+G.coins = 8, expected = 8
+
+Test player 1 with 2 copper(s), 3 silver(s), and 4 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 1 copper(s), 4 silver(s), and 8 bonus.
+G.coins = 17, expected = 17
+
+Test player 1 with 0 copper(s), 5 silver(s), and 4 bonus.
+G.coins = 14, expected = 14
+
+TESTING updateCoins() with coppers and gold:
+
+Test player 0 with 5 copper(s), 0 gold(s), and 3 bonus.
+G.coins = 8, expected = 8
+
+Test player 0 with 4 copper(s), 1 gold(s), and 9 bonus.
+G.coins = 16, expected = 16
+
+Test player 0 with 3 copper(s), 2 gold(s), and 2 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 2 copper(s), 3 gold(s), and 1 bonus.
+G.coins = 12, expected = 12
+
+Test player 0 with 1 copper(s), 4 gold(s), and 4 bonus.
+G.coins = 17, expected = 17
+
+Test player 0 with 0 copper(s), 5 gold(s), and 5 bonus.
+G.coins = 20, expected = 20
+
+Test player 1 with 5 copper(s), 0 gold(s), and 1 bonus.
+G.coins = 6, expected = 6
+
+Test player 1 with 4 copper(s), 1 gold(s), and 5 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 3 copper(s), 2 gold(s), and 5 bonus.
+G.coins = 14, expected = 14
+
+Test player 1 with 2 copper(s), 3 gold(s), and 2 bonus.
+G.coins = 13, expected = 13
+
+Test player 1 with 1 copper(s), 4 gold(s), and 8 bonus.
+G.coins = 21, expected = 21
+
+Test player 1 with 0 copper(s), 5 gold(s), and 8 bonus.
+G.coins = 23, expected = 23
+All tests passed!
+
+TESTING scoreFor():
+
+Test 1 - Player 0:
+Putting following cards into discard pile:
+    4 duchy
+    5 provinces
+    3 great halls
+    2 gardens
+    1 curses
+deckCount: 5
+discardCount: 15
+handCount: 5
+Player 0 score: 48, expected: 51
+
+Test 2 - Player 1:
+All cards in deck, no additional card changes:
+deckCount: 10
+discardCount: 0
+handCount: 0
+Player 1 score: 0, expected: 3
+
+2 test(s) failed!
+
+TESTING isGameOver():
+If the game ends, isGameOver = 1
+Test#1: The game without any change
+Game is over: 0, expected: 0
+
+Test#2: 0 Provinces
+Game is over: 1, expected: 1
+
+Test#3: 1 Empty pile
+Game is over: 0, expected: 0
+
+Test#4: 2 Empty piles
+Game is over: 0, expected: 0
+
+Test#5: 3 Empty piles
+Game is over: 1, expected: 1
+
+All tests passed!
+
+TESTING fullDeckCount():
+
+Testing for Player 0:
+Adding the following to the
+deck:         6 coppers
+hand:         8 golds
+discard pile: 3 provinces
+deck:         4 smithys
+hand:	      5 Minion
+deck:         4 Cutpurse
+Test results:
+initial copper result: 7, expected: 7
+initial estate result: 3, expected: 3
+updated copper result: 13, expected: 13
+gold result: 8, expected: 8
+provinces result: 3, expected: 3
+smithy result: 4, expected: 4
+minion result: 5, expected: 5
+cutpurse result: 4, expected: 4
+
+Testing for Player 1:
+Adding the following to the
+deck:         6 coppers
+hand:         8 golds
+discard pile: 3 provinces
+deck:         4 smithys
+hand:	      5 Minion
+deck:         4 Cutpurse
+Test results:
+initial copper result: 7, expected: 7
+initial estate result: 3, expected: 3
+updated copper result: 13, expected: 13
+gold result: 8, expected: 8
+provinces result: 3, expected: 3
+smithy result: 4, expected: 4
+minion result: 5, expected: 5
+cutpurse result: 4, expected: 4
+
+All tests passed!!
+Testing Smithy Card: 
+Verifying base state of game: 
+Starting EState cards:   8, expected: 8
+Starting Duchy cards:    8, expected: 8
+Starting Province cards: 8, expected: 8
+Player 0
+Starting coins:        4
+Starting deckCount:    5
+Starting handCount:    5
+Starting discardCount: 0
+
+Player 1
+Starting coins:        4
+Starting deckCount:    10
+Starting handCount:    0
+Starting discardCount: 0
+
+Test#1: +3 cards
+Player 0
+Test_state hand count =    5, Base_state hand count =    5
+Test_state deck count =    2, Base_state deck count =    5
+Test_state discard count = 1, Base_state discard count = 0
+ERROR: Hand counts didn't increase properly
+ERROR: discard counts don't match
+Player 1
+Test_state hand count =    0, Base_state hand count =    0
+Test_state deck count =    10, Base_state deck count =    10
+Test_state discard count = 0, Base_state discard count = 0
+Test#1 failed
+TEST#2: Discard Smithy card
+
+Test#2 passed.
+
+TEST#3: unchanged supply cards
+Test 3 passed.
+All tests complete!!
+TESTING updateCoins() with coppers and silvers:
+
+Test player 0 with 5 copper(s), 0 silver(s), and 6 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 4 copper(s), 1 silver(s), and 5 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 3 copper(s), 2 silver(s), and 8 bonus.
+G.coins = 15, expected = 15
+
+Test player 0 with 2 copper(s), 3 silver(s), and 0 bonus.
+G.coins = 8, expected = 8
+
+Test player 0 with 1 copper(s), 4 silver(s), and 5 bonus.
+G.coins = 14, expected = 14
+
+Test player 0 with 0 copper(s), 5 silver(s), and 0 bonus.
+G.coins = 10, expected = 10
+
+Test player 1 with 5 copper(s), 0 silver(s), and 2 bonus.
+G.coins = 7, expected = 7
+
+Test player 1 with 4 copper(s), 1 silver(s), and 6 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 3 copper(s), 2 silver(s), and 1 bonus.
+G.coins = 8, expected = 8
+
+Test player 1 with 2 copper(s), 3 silver(s), and 4 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 1 copper(s), 4 silver(s), and 8 bonus.
+G.coins = 17, expected = 17
+
+Test player 1 with 0 copper(s), 5 silver(s), and 4 bonus.
+G.coins = 14, expected = 14
+
+TESTING updateCoins() with coppers and gold:
+
+Test player 0 with 5 copper(s), 0 gold(s), and 3 bonus.
+G.coins = 8, expected = 8
+
+Test player 0 with 4 copper(s), 1 gold(s), and 9 bonus.
+G.coins = 16, expected = 16
+
+Test player 0 with 3 copper(s), 2 gold(s), and 2 bonus.
+G.coins = 11, expected = 11
+
+Test player 0 with 2 copper(s), 3 gold(s), and 1 bonus.
+G.coins = 12, expected = 12
+
+Test player 0 with 1 copper(s), 4 gold(s), and 4 bonus.
+G.coins = 17, expected = 17
+
+Test player 0 with 0 copper(s), 5 gold(s), and 5 bonus.
+G.coins = 20, expected = 20
+
+Test player 1 with 5 copper(s), 0 gold(s), and 1 bonus.
+G.coins = 6, expected = 6
+
+Test player 1 with 4 copper(s), 1 gold(s), and 5 bonus.
+G.coins = 12, expected = 12
+
+Test player 1 with 3 copper(s), 2 gold(s), and 5 bonus.
+G.coins = 14, expected = 14
+
+Test player 1 with 2 copper(s), 3 gold(s), and 2 bonus.
+G.coins = 13, expected = 13
+
+Test player 1 with 1 copper(s), 4 gold(s), and 8 bonus.
+G.coins = 21, expected = 21
+
+Test player 1 with 0 copper(s), 5 gold(s), and 8 bonus.
+G.coins = 23, expected = 23
+All tests passed!
+
+TESTING scoreFor():
+
+Test 1 - Player 0:
+Putting following cards into discard pile:
+    4 duchy
+    5 provinces
+    3 great halls
+    2 gardens
+    1 curses
+deckCount: 5
+discardCount: 15
+handCount: 5
+Player 0 score: 48, expected: 51
+
+Test 2 - Player 1:
+All cards in deck, no additional card changes:
+deckCount: 10
+discardCount: 0
+handCount: 0
+Player 1 score: 0, expected: 3
+
+2 test(s) failed!
+
+TESTING isGameOver():
+If the game ends, isGameOver = 1
+Test#1: The game without any change
+Game is over: 0, expected: 0
+
+Test#2: 0 Provinces
+Game is over: 1, expected: 1
+
+Test#3: 1 Empty pile
+Game is over: 0, expected: 0
+
+Test#4: 2 Empty piles
+Game is over: 0, expected: 0
+
+Test#5: 3 Empty piles
+Game is over: 1, expected: 1
+
+All tests passed!
+
+TESTING fullDeckCount():
+
+Testing for Player 0:
+Adding the following to the
+deck:         6 coppers
+hand:         8 golds
+discard pile: 3 provinces
+deck:         4 smithys
+hand:	      5 Minion
+deck:         4 Cutpurse
+Test results:
+initial copper result: 7, expected: 7
+initial estate result: 3, expected: 3
+updated copper result: 13, expected: 13
+gold result: 8, expected: 8
+provinces result: 3, expected: 3
+smithy result: 4, expected: 4
+minion result: 5, expected: 5
+cutpurse result: 4, expected: 4
+
+Testing for Player 1:
+Adding the following to the
+deck:         6 coppers
+hand:         8 golds
+discard pile: 3 provinces
+deck:         4 smithys
+hand:	      5 Minion
+deck:         4 Cutpurse
+Test results:
+initial copper result: 7, expected: 7
+initial estate result: 3, expected: 3
+updated copper result: 13, expected: 13
+gold result: 8, expected: 8
+provinces result: 3, expected: 3
+smithy result: 4, expected: 4
+minion result: 5, expected: 5
+cutpurse result: 4, expected: 4
+
+All tests passed!!
+Testing Smithy Card: 
+Verifying base state of game: 
+Starting EState cards:   8, expected: 8
+Starting Duchy cards:    8, expected: 8
+Starting Province cards: 8, expected: 8
+Player 0
+Starting coins:        4
+Starting deckCount:    5
+Starting handCount:    5
+Starting discardCount: 0
+
+Player 1
+Starting coins:        4
+Starting deckCount:    10
+Starting handCount:    0
+Starting discardCount: 0
+
+Test#1: +3 cards
+Player 0
+Test_state hand count =    5, Base_state hand count =    5
+Test_state deck count =    2, Base_state deck count =    5
+Test_state discard count = 1, Base_state discard count = 0
+ERROR: Hand counts didn't increase properly
+ERROR: discard counts don't match
+Player 1
+Test_state hand count =    0, Base_state hand count =    0
+Test_state deck count =    10, Base_state deck count =    10
+Test_state discard count = 0, Base_state discard count = 0
+Test#1 failed
+TEST#2: Discard Smithy card
+
+Test#2 passed.
+
+TEST#3: unchanged supply cards
+Test 3 passed.
+All tests complete!!
+Verifying base state of game: 
+Starting EState cards:   8, expected: 8
+Starting Duchy cards:    8, expected: 8
+Starting Province cards: 8, expected: 8
+Player 0
+Starting coins:        4
+Starting deckCount:    5
+Starting handCount:    5
+Starting discardCount: 0
+
+Player 1
+Starting coins:        4
+Starting deckCount:    10
+Starting handCount:    0
+Starting discardCount: 0
+
+Testing Adventurer Card: 
+TEST#1: Test that the supply is unchanged
+ERROR: Expected supplyCount was: 9 Actual value: 10
+Test 1 failed.

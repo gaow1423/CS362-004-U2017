@@ -644,7 +644,7 @@ int getCost(int cardNumber)
 }
 int playAdventurer(int currentPlayer, struct gameState *state)
 {	
-	int drawntreasure = 0;//bug: changed drawntreasure from 0 to 1;
+	int drawntreasure = 1;//bug: changed drawntreasure from 0 to 1;
 	int cardDrawn;
 	int z=0;// this is the counter for the temp hand
 	int temphand[MAX_HAND];//moved above the if statement
@@ -671,7 +671,7 @@ int playAdventurer(int currentPlayer, struct gameState *state)
 int playSmithy(struct gameState *state, int currentPlayer, int handPos)
 {
 	int i;
-		for(i=0; i<3; i++)//bug: change i=0 to i=1
+		for(i=1; i<3; i++)//bug: change i=0 to i=1
 		{
 			drawCard(currentPlayer, state);
 		}
@@ -684,7 +684,7 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos)
 	drawCard(currentPlayer, state);
 
 	//+2 Actions
-	state->numActions = state->numActions + 2;//bug: change state->numActions = state->numActions + 2 to state->numActions = state->numActions + 1
+	state->numActions = state->numActions + 1;//bug: change from state->numActions = state->numActions + 2 to state->numActions = state->numActions + 1
 
 	//discard played card from hand
 	discardCard(handPos, currentPlayer, state, 0);
@@ -705,7 +705,7 @@ int playCouncilRoom(struct gameState *state, int currentPlayer, int handPos)
 	}
 
 	//+1 Buy
-	state->numBuys++;//bug: change from numBugs++ to numBugs--
+	state->numBuys--;//bug: change from numBugs++ to numBugs--
 
 	//Each other player draws a card
 	for (i = 0; i < state->numPlayers; i++)
