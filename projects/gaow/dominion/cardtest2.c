@@ -39,6 +39,7 @@ int main()
 	int numPlayers = 3;
 	struct gameState G;
 	struct gameState test;
+	memset(&G, 23, sizeof(struct gameState));
 	int k[10] = {adventurer, council_room, feast, gardens, mine,
 		remodel, smithy, village, baron, great_hall};
 	initializeGame(numPlayers, k, seed, &G);
@@ -64,12 +65,16 @@ int main()
 		printf("Starting discardCount: %d\n\n", G.discardCount[i]);
 
 	}
-
+	G.hand[0][G.handCount[0]-1] = adventurer;
+	test.hand[0][test.handCount[0]-1] = adventurer;
+	handpos = test.handCount[0]-1;
 	//Test 1: make sure no supply card is changed;
 	printf("TEST#1: Test that the supply is unchanged\n");
 	fail = 0;
 	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	//cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	//dom_adventurer(cardDrawn,0,player,tempHand,&t,z);
+	playAdventurer(0, &test);
 	for(i = 0; i < 25; i++)
 	{
 
@@ -84,19 +89,54 @@ int main()
 	result(fail, 1);
 
 	//Test2: Hand count increase by 1;
-	printf("TEST#2: Hand count increase by 1\n");
+	printf("TEST#2: Hand count increase properly\n");
 	fail = 0;
 	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
-	if(test.handCount[0] != G.handCount[0] + 1)
+	//dom_adventurer(cardDrawn,0,player,tempHand,&t,z);
+	playAdventurer(0, &test);
+	//cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	int q;
+	int tCount = 0;
+	for(q = 0; q < G.deckCount[0]; q++)
 	{
+		if (G.deck[0][q] == copper || silver || gold)
+			tCount ++;
+	}
+	if (tCount >= 2)
+	{
+		if(test.handCount[0] != G.handCount[0] + 1)
+		{
 #if (NOISY_TEST)
-		printf("ERROR: Expected Value: %d  Actual Value: %d\n", G.handCount[0] + 1, test.handCount[0]);
+			printf("ERROR: Expected Value: %d  Actual Value: %d\n", G.handCount[0] + 1, test.handCount[0]);
 #endif
-		fail = 1;
+			fail = 1;
+		}
+	}
+	else if(tCount == 1)
+	{
+		if(test.handCount[0] != G.handCount[0])
+		{
+#if (NOISY_TEST)
+			printf("ERROR: Expected Value: %d  Actual Value: %d\n", G.handCount[0], test.handCount[0]);
+#endif
+			fail = 1;
+		}	
+	}
+	else if(tCount == 0)
+	{
+		if(test.handCount[0] != G.handCount[0] - 1)
+		{
+#if (NOISY_TEST)
+			printf("ERROR: Expected Value: %d  Actual Value: %d\n", G.handCount[0] - 1, test.handCount[0]);
+#endif
+			fail = 1;
+		}
+	}
+	else
+	{
 	}
 	result(fail, 2);
-
+/*
 	//Test 3: deck count decrease properly
 	printf("TEST#3: Test that the supply is unchanged\n");
 	fail = 0;
@@ -110,30 +150,51 @@ int main()
 		fail = 1;
 	}
 	result(fail, 3);
-
-	//Test 4: two treasure are added to player's hand
-	printf("TEST#4: Two treasure cards are added to player's hand\n");
+*/
+	//Test 3: Treasure are added to player's hand
+	printf("TEST#3: Treasure cards are added to player's hand\n");
 	fail = 0;
 	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
-	if((test.hand[0][test.handCount[0] - 1] == copper||test.hand[0][test.handCount[0] - 1] == silver || test.hand[0][test.handCount[0] - 1] == gold) &&(test.hand[0][test.handCount[0] - 2] == copper || test.hand[0][test.handCount[0] - 2] == silver || test.hand[0][test.handCount[0] - 2] == gold))
+	//cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	playAdventurer(0, &test);
+	if (tCount >= 2)
 	{
+		if((test.hand[0][test.handCount[0] - 1] == copper||test.hand[0][test.handCount[0] - 1] == silver || test.hand[0][test.handCount[0] - 1] == gold) &&(test.hand[0][test.handCount[0] - 2] == copper || test.hand[0][test.handCount[0] - 2] == silver || test.hand[0][test.handCount[0] - 2] == gold))
+		{
 #if (NOISY_TEST)
-		printf("The 2 treasure cards: %d, %d\n", test.hand[0][test.handCount[0] - 1], 
-				test.hand[0][test.handCount[0] - 2]);
+			printf("The 2 treasure cards: %d, %d\n", test.hand[0][test.handCount[0] - 1], 
+					test.hand[0][test.handCount[0] - 2]);
 #endif
+		}
+		else
+		{
+			fail = 1;
+		}
+	}
+	else if(tCount == 1)
+	{
+		if (test.hand[0][test.handCount[0]] == copper || silver || gold)
+		{
+			printf("The treasure card: %d\n", test.hand[0][test.handCount[0]]);
+		}
+		else
+			fail = 1;
 	}
 	else
 	{
-		fail = 1;
-	}
-	result(fail, 4);
 
-	//Test 5: Other revealled cards are discarded
-	printf("TEST#5: Test whether Other revealled cards are discarded\n");
+	}
+	result(fail, 3);
+
+	//Test 4: Other revealled cards are discarded
+	printf("TEST#4: Test whether Other revealled cards are discarded\n");
 	fail = 0;
 	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	playAdventurer(0, &test);
+	//dom_adventurer(cardDrawn,0,player,tempHand,&t,z);
+	//cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	if (tCount >= 2)
+	{
 	if((test.deckCount[0] + test.discardCount[0]) != (G.deckCount[0] + G.discardCount[0] - 2))
 	{
 #if (NOISY_TEST)
@@ -141,13 +202,27 @@ int main()
 #endif
 		fail = 1;
 	}
-	result(fail, 5);
+	}
+	else 
+	{
+		if((test.deckCount[0] + test.discardCount[0]) != (G.deckCount[0] + G.discardCount[0] - tCount))
+        {
+#if (NOISY_TEST)
+                printf("ERROR: Expected Value: %d Actual Value: %d\n", test.deckCount[0] + test.discardCount[0], G.deckCount[0] + G.discardCount[0] - tCount);
+#endif
+                fail = 1;
+        }
+	}
+	result(fail, 4);
 
-	//Test 6: Make sure other players are not effected
-	printf("TEST#6: Make sure other players are not effected\n");
+	//Test 5: Make sure other players are not effected
+	printf("TEST#5: Make sure other players are not effected\n");
 	fail = 0;
 	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	//cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+	
+	//dom_adventurer(cardDrawn,0,player,tempHand,&t,z);
+	playAdventurer(0, &test);
 	for(i=1; i<numPlayers; i++)
 	{
 		if(test.handCount[i] != G.handCount[i])
@@ -166,7 +241,7 @@ int main()
 		}
 
 	}
-	result(fail, 6);
+	result(fail, 5);
 
 	printf("All tests complete!!\n");
 

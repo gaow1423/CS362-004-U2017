@@ -45,9 +45,9 @@ int main()
 
 
 	printf("Verifying base state of game: \n");
-	printf("Starting EState cards:   %d, expected: 8\n", G.supplyCount[1]);
-	printf("Starting Duchy cards:    %d, expected: 8\n", G.supplyCount[2]);
-	printf("Starting Province cards: %d, expected: 8\n", G.supplyCount[3]);
+	printf("Starting EState cards:   %d, expected: 12\n", G.supplyCount[1]);
+	printf("Starting Duchy cards:    %d, expected: 12\n", G.supplyCount[2]);
+	printf("Starting Province cards: %d, expected: 12\n", G.supplyCount[3]);
 
 
 
@@ -61,12 +61,16 @@ int main()
 
 	}
 #endif
-
+	G.hand[0][G.handCount[0]-1] = village;
+        test.hand[0][test.handCount[0]-1] = village;
+        handpos = G.handCount[0]-1;
 	//Test 1: make sure no supply card is changed;
 	printf("TEST#1: Test that the supply is unchanged\n");
 	fail = 0;
 	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
+	//cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
+	playVillage(&test, 0, handpos);
+
 	for(i = 0; i < 25; i++)
 	{
 
@@ -83,8 +87,9 @@ int main()
 	//Test2: deck count decrease properly
 	printf("TEST#2: test if deck count decrease properly\n");
 	fail = 0;
-	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
+	//memcpy(&test, &G, sizeof(struct gameState));
+	//cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
+	//playVillage(&test, 0, handpos);
 	if(test.deckCount[0] != G.deckCount[0]-1)
 	{
 #if (NOISY_TEST)
@@ -97,7 +102,8 @@ int main()
 	//Test3: Hand count remains the same
 	printf("TEST#3: test if Hand count increase by 1\n");
 	fail = 0;
-	memcpy(&test, &G, sizeof(struct gameState));
+	//memcpy(&test, &G, sizeof(struct gameState));
+	//playVillage(&test, 0, handpos);
 	if(test.handCount[0] != G.handCount[0])
 	{
 #if (NOISY_TEST)
@@ -110,12 +116,13 @@ int main()
 	//Test4: Action increase by 2
 	printf("TEST#4: test if action increase by 2.\n");
 	fail = 0;
-	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
-	if(test.numActions != G.numActions+1)
+	//memcpy(&test, &G, sizeof(struct gameState));
+	//cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
+//	playVillage(&test, 0, handpos);
+	if(test.numActions != G.numActions+2)
 	{
 #if (NOISY_TEST)
-		printf("ERROR: Expected Value: %d  Actual Value: %d.\n", G.numActions+1, test.numActions);
+		printf("ERROR: Expected Value: %d  Actual Value: %d.\n", G.numActions+2, test.numActions);
 #endif
 		fail = 1;
 	}
@@ -124,8 +131,8 @@ int main()
 	//Test5: buynumber remain the same
 	printf("TEST#5: test if the number of buys unchanged.\n");
 	fail = 0;
-	memcpy(&test, &G, sizeof(struct gameState));
-	cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);	
+	//memcpy(&test, &G, sizeof(struct gameState));
+	//cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);	
 	if(test.numBuys != G.numBuys)
 	{
 #if (NOISY_TEST)
@@ -134,8 +141,7 @@ int main()
 		fail = 1;
 	}
 	result(fail,5);
-
-	//Test6: 
+ 
 
 	return 0;
 }
