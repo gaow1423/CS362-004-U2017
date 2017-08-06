@@ -1,290 +1,1 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\froman\fcharset0 TimesNewRomanPSMT;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset134 PingFangSC-Regular;
-}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww24240\viewh2600\viewkind0
-\deftab720
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\f0\b\fs28 \cf0 Bug-Reports:\
-Bug1:
-\b0  For Smithy card implementation, the smithy is not discarded after implemented.\
-\pard\pardeftab720\fi720\ri0\sl360\slmult1\partightenfactor0
-
-\b \cf0 Result:\
-\pard\pardeftab720\li720\fi720\ri0\sl360\slmult1\partightenfactor0
-\cf0 According to  unittest, this is the detail result as follows
-\b0 :\
-\pard\pardeftab720\fi720\ri0\sl360\slmult1\partightenfactor0
-\cf0 \
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\f1\fs27 \cf0 TEST#1: +3 cards
-\f0 \
-
-\f1 Player 0
-\f0 \
-
-\f1 Test_state hand count =
-\f0 \'a0
-\f1  \'a0 8, Base_state hand count =
-\f0 \'a0
-\f1  \'a0 5
-\f0 \
-
-\f1 Test_state deck count =
-\f0 \'a0
-\f1  \'a0 2, Base_state deck count =
-\f0 \'a0
-\f1  \'a0 5
-\f0 \
-
-\f1 Test_state discard count = 0, Base_state discard count = 0
-\f0 \
-
-\f1 ERROR: Hand counts didn't increase properly
-\f0 \
-
-\f1 ERROR: discard counts don't match
-\f0 \
-
-\f1 Player 1
-\f0 \
-
-\f1 Test_state hand count =
-\f0 \'a0
-\f1  \'a0 0, Base_state hand count =
-\f0 \'a0
-\f1  \'a0 
-\f0 0\
-
-\f1 Test_state deck count =
-\f0 \'a0
-\f1  \'a0 10, Base_state deck count =
-\f0 \'a0
-\f1  \'a0 10
-\f0 \
-
-\f1 Test_state discard count = 0, Base_state discard count = 0
-\f0 \
-
-\f1 Player 2
-\f0 \
-
-\f1 Test_state hand count =
-\f0 \'a0
-\f1  \'a0 0, Base_state hand count =
-\f0 \'a0
-\f1  \'a0 
-\f0 0\
-
-\f1 Test_state deck count =
-\f0 \'a0
-\f1  \'a0 10, Base_state deck count =
-\f0 \'a0
-\f1  \'a0 10
-\f0 \
-
-\f1 Test_state discard count = 0, Base_state discard count = 0
-\f0 \
-
-\f1 Test#1 failed
-\f0 \
-\
-
-\f1 TEST#2: Discard Smithy card
-\f0 \
-
-\f1 ERROR: Smithy is not discarded.
-\f0 \
-
-\f1 Test#2 failed
-\f0 \
-\
-
-\f1 TEST#3: unchanged supply cards
-\f0 \
-
-\f1 Test 3 passed.
-\f0 \
-
-\f1 All tests complete!!
-\f0 \
-\pard\pardeftab720\fi720\ri0\sl360\slmult1\partightenfactor0
-
-\fs28 \cf0 \
-\pard\pardeftab720\li720\fi720\ri0\sl360\slmult1\partightenfactor0
-
-\b \cf0 According to random test, the detail result is as follows
-\b0 	\
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\f1\fs27 \cf0 test1: test if hand count increase properly
-\f0 \
-
-\f1 0 out of 1000 tests passed!
-\f0 \
-
-\f1 1000 out of 1000 tests failed!
-\f0 \
-\
-
-\f1 test2: test if the card count in both deck and discard piles change properly
-\f0 \
-
-\f1 0 out of 1000 tests passed!
-\f0 \
-
-\f1 1000 out of 1000 tests failed!
-\f0 \
-\
-
-\f1 test3: test if it discards Smithy card
-\f0 \
-
-\f1 0 out of 1000 tests passed!
-\f0 \
-
-\f1 1000 out of 1000 tests failed!
-\f0 \
-\
-
-\f1 test4: test if it keeps supply cards unchanged
-\f0 \
-
-\f1 1000 out of 1000 tests passed!
-\f0 \
-
-\f1 0 out of 1000 tests failed!
-\f0 \
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\fs28 \cf0 \
-\pard\pardeftab720\fi720\ri0\sl360\slmult1\partightenfactor0
-
-\b \cf0 Cause: 
-\b0 The smithy card implementation function does not include discard function after implementing the card.\
-\
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-\cf0 	\
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\b \cf0 Bug2: 
-\b0 For village implementation, hand count increases improperly, and action number increase improperly.\
-	
-\b Results:\
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\b0 \cf0 	
-\b According to unit test, the result is as follows:\
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\f1\b0\fs27 \cf0 TEST#1: Test that the supply is unchanged
-\f0 \
-
-\f1 Test 1 passed.
-\f0 \
-\
-
-\f1 TEST#2: test if deck count decrease properly
-\f0 \
-
-\f1 Test 2 passed.
-\f0 \
-\
-
-\f1 TEST#3: test if Hand count increase by 1
-\f0 \
-
-\f1 ERROR: Expected Value: 5
-\f0 \'a0
-\f1  Actual Value: 6
-\f0 \
-
-\f1 Test 3 failed.
-\f0 \
-\
-
-\f1 TEST#4: test if action increase by 2.
-\f0 \
-
-\f1 ERROR: Expected Value: 3
-\f0 \'a0
-\f1  Actual Value: 4.
-\f0 \
-
-\f1 Test 4 failed.
-\f0 \
-\
-
-\f1 TEST#5: test if the number of buys unchanged.
-\f0 \
-
-\f1 Test 5 passed.
-\f0 \
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\fs28 \cf0 \
-	
-\b According to random test, the result is as follows:\
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\f1\b0\fs27 \cf0 test1: Test if the supply is unchanged
-\f0 \
-
-\f1 1000 out of 1000 tests passed!
-\f0 \
-
-\f1 0 out of 1000 tests failed!
-\f0 \
-\
-
-\f1 test2: Test if card count in deck and discard pile change properly
-\f0 \
-
-\f1 0 out of 1000 tests passed!
-\f0 \
-
-\f1 1000 out of 1000 tests failed!
-\f0 \
-\
-
-\f1 test3: Test if Hand count increase properly.
-\f0 \
-
-\f1 0 out of 1000 tests passed!
-\f0 \
-
-\f1 1000 out of 1000 tests failed!
-\f0 \
-\
-
-\f1 test4: Test if action increase properly.
-\f0 \
-
-\f1 0 out of 1000 tests passed!
-\f0 \
-
-\f1 1000 out of 1000 tests failed!
-\f0 \
-\
-
-\f1 test5: Test if the number of buys unchanged.
-\f0 \
-
-\f1 1000 out of 1000 tests passed!
-\f0 \
-
-\f1 0 out of 1000 tests failed!
-\f0 \
-\pard\pardeftab720\ri0\sl360\slmult1\partightenfactor0
-
-\fs28 \cf0 \
-	
-\b Cause
-\f2 \'a3\'ba
-\f0 \
-		
-\b0 The village implementation does not include the discard card function. The actions increase 3 instead of 2, which causes the test to fail.\
-}
+Bug-Reports:Bug1: For Smithy card implementation, the smithy is not discarded after implemented.     Result:     According to  unittest, this is the detail result as follows:     TEST#1: +3 cardsPlayer 0Test_state hand count =Ê Ê 8, Base_state hand count =Ê Ê 5Test_state deck count =Ê Ê 2, Base_state deck count =Ê Ê 5Test_state discard count = 0, Base_state discard count = 0ERROR: Hand counts didn't increase properlyERROR: discard counts don't matchPlayer 1Test_state hand count =Ê Ê 0, Base_state hand count =Ê Ê 0Test_state deck count =Ê Ê 10, Base_state deck count =Ê Ê 10Test_state discard count = 0, Base_state discard count = 0Player 2Test_state hand count =Ê Ê 0, Base_state hand count =Ê Ê 0Test_state deck count =Ê Ê 10, Base_state deck count =Ê Ê 10Test_state discard count = 0, Base_state discard count = 0Test#1 failedTEST#2: Discard Smithy cardERROR: Smithy is not discarded.Test#2 failedTEST#3: unchanged supply cardsTest 3 passed.All tests complete!!          According to random test, the detail result is as follows	test1: test if hand count increase properly0 out of 1000 tests passed!1000 out of 1000 tests failed!test2: test if the card count in both deck and discard piles change properly0 out of 1000 tests passed!1000 out of 1000 tests failed!test3: test if it discards Smithy card0 out of 1000 tests passed!1000 out of 1000 tests failed!test4: test if it keeps supply cards unchanged1000 out of 1000 tests passed!0 out of 1000 tests failed!     Cause: The smithy card implementation function does not include discard function after implementing the card.     	Bug2: For village implementation, hand count increases improperly, and action number increase improperly.	Results:	According to unit test, the result is as follows:TEST#1: Test that the supply is unchangedTest 1 passed.TEST#2: test if deck count decrease properlyTest 2 passed.TEST#3: test if Hand count increase by 1ERROR: Expected Value: 5Ê Actual Value: 6Test 3 failed.TEST#4: test if action increase by 2.ERROR: Expected Value: 3Ê Actual Value: 4.Test 4 failed.TEST#5: test if the number of buys unchanged.Test 5 passed.	According to random test, the result is as follows:test1: Test if the supply is unchanged1000 out of 1000 tests passed!0 out of 1000 tests failed!test2: Test if card count in deck and discard pile change properly0 out of 1000 tests passed!1000 out of 1000 tests failed!test3: Test if Hand count increase properly.0 out of 1000 tests passed!1000 out of 1000 tests failed!test4: Test if action increase properly.0 out of 1000 tests passed!1000 out of 1000 tests failed!test5: Test if the number of buys unchanged.1000 out of 1000 tests passed!0 out of 1000 tests failed!	Cause:		The village implementation does not include the discard card function. The actions increase 3 instead of 2, which causes the test to fail.
